@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Comprobador de Funciones</title>
+<style>
+    body {
+        background-color: #000;
+        color: #FFD700;
+        font-family: Arial, sans-serif;
+        padding: 20px;
+    }
+    h1 {
+        text-align: center;
+        color: #FFD700;
+    }
+    textarea, input {
+        width: 100%;
+        margin: 8px 0;
+        padding: 8px;
+        background-color: #111;
+        border: 1px solid #FFD700;
+        color: #FFD700;
+    }
+    button {
+        background-color: #FFD700;
+        color: #000;
+        border: none;
+        padding: 10px 20px;
+        cursor: pointer;
+        font-weight: bold;
+        margin-top: 10px;
+    }
+    #resultado {
+        margin-top: 20px;
+        font-size: 1.2em;
+    }
+</style>
+</head>
+<body>
+<h1>Comprobador de Funciones</h1>
+<label for="codigo">Código de la función (JavaScript):</label>
+<textarea id="codigo" rows="6">function suma(a, b) {
+    return a + b;
+}</textarea>
+<label for="nombre">Nombre de la función a comprobar:</label>
+<input type="text" id="nombre" value="suma">
+<label for="argumentos">Argumentos (separados por coma):</label>
+<input type="text" id="argumentos" value="1,2">
+<label for="esperado">Resultado esperado:</label>
+<input type="text" id="esperado" value="3">
+<button id="chequear">Chequear</button>
+<div id="resultado"></div>
+<script>
+document.getElementById('chequear').addEventListener('click', function() {
+    const codigo = document.getElementById('codigo').value;
+    const nombre = document.getElementById('nombre').value;
+    const args = document.getElementById('argumentos').value.split(',').map(a => a.trim());
+    const esperado = document.getElementById('esperado').value;
+    const salida = document.getElementById('resultado');
+    try {
+        const fullCode = `(function(){ ${codigo}; return ${nombre}(${args.join(',')}); })()`;
+        const resultado = eval(fullCode);
+        if (String(resultado) === esperado) {
+            salida.textContent = '✔ Funciona correctamente';
+            salida.style.color = '#FFD700';
+        } else {
+            salida.textContent = `✘ Esperado ${esperado}, pero obtuvo ${resultado}`;
+            salida.style.color = '#FFD700';
+        }
+    } catch (err) {
+        salida.textContent = '✘ Error al ejecutar la función: ' + err.message;
+        salida.style.color = '#FFD700';
+    }
+});
+</script>
+</body>
+</html>

@@ -1,1 +1,14 @@
+# Comprobador de Funciones
 
+Este repositorio contiene una interfaz sencilla en HTML que permite probar funciones escritas en JavaScript.
+
+## Uso
+
+Abre `function_checker.html` en un navegador web. La interfaz está diseñada con un esquema de colores **negro** y **dorado**.
+
+1. Escribe o modifica el código de la función en el área de texto.
+2. Indica el nombre de la función que deseas comprobar.
+3. Especifica los argumentos separados por coma y el resultado esperado.
+4. Haz clic en **Chequear** para verificar si la función devuelve el resultado indicado.
+
+El resultado de la comprobación se mostrará debajo del botón.
